@@ -44,6 +44,7 @@ const LoginForm = (props) => {
       emailInputRef.current.value = "";
       passwordInputRef.current.value = "";
       alert("successfully loggedIn");
+      history.replace("/welcome");
     } catch (err) {
       console.log(err);
       alert(err.message);
