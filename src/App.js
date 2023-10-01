@@ -5,6 +5,7 @@ import { Switch } from "react-router-dom";
 import { Route, Redirect } from "react-router-dom";
 import LoginForm from "./pages/login/LoginForm";
 import WelcomePage from "./pages/WelcomePage";
+import UpdateProfile from "./pages/update-profile/UpdateProfile";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
       </Route>
       <Route path="/welcome">
         <WelcomePage></WelcomePage>
+      </Route>
+      <Route path="/update-profile">
+        <UpdateProfile></UpdateProfile>
       </Route>
     </Switch>
   );
