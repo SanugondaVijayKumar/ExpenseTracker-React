@@ -52,36 +52,32 @@ const LoginForm = (props) => {
   };
 
   return (
-    <div className={classes.CardContainer}>
-      <CardBound>
-        <Form onSubmit={submitHandler}>
-          <h4>Login page</h4>
-          <Form.Group className={classes["Form-Group"]}>
-            <Form.Control
-              required
-              type="email"
-              placeholder="email"
-              className={classes["Form-Control"]}
-              ref={emailInputRef}
-            />
-          </Form.Group>
-          <Form.Group className={classes["Form-Group"]}>
-            <Form.Control
-              required
-              type="password"
-              placeholder="password"
-              className={classes["Form-Control"]}
-              ref={passwordInputRef}
-            />
-          </Form.Group>
+    <Form onSubmit={submitHandler} className={classes["form-container"]}>
+      <h4 className={classes["form-header"]}>Login page</h4>
+      <Form.Group>
+        <Form.Control
+          required
+          type="email"
+          placeholder="email"
+          ref={emailInputRef}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Control
+          required
+          type="password"
+          placeholder="password"
+          ref={passwordInputRef}
+        />
+      </Form.Group>
 
-          <Button type="submit">Login</Button>
-          <p>
-            Don't have an Account?<Link to="/signup">Sign Up</Link>
-          </p>
-        </Form>
-      </CardBound>
-    </div>
+      <Button className={classes["submit-button"]} type="submit">
+        Login
+      </Button>
+      <p className={classes["sign-up-link"]}>
+        Don't have an Account?<Link to="/signup">Sign Up</Link>
+      </p>
+    </Form>
   );
 };
 

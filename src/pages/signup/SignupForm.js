@@ -48,6 +48,7 @@ const SignupForm = (props) => {
         const data = await response.json();
         console.log(data);
         setShowContent(false);
+        alert("successfully created the user!");
         history.replace("/login");
       }
     } catch (err) {
@@ -58,46 +59,43 @@ const SignupForm = (props) => {
   };
 
   return (
-    <div className={classes.CardContainer}>
-      <CardBound>
-        <Form onSubmit={submitHandler}>
-          <h4>Sign Up page</h4>
-          <Form.Group className={classes["Form-Group"]}>
-            <Form.Control
-              required
-              type="email"
-              placeholder="email"
-              className={classes["Form-Control"]}
-              ref={emailInputRef}
-            />
-          </Form.Group>
-          <Form.Group className={classes["Form-Group"]}>
-            <Form.Control
-              required
-              type="password"
-              placeholder="password"
-              className={classes["Form-Control"]}
-              ref={passwordInputRef}
-            />
-          </Form.Group>
-          <Form.Group className={classes["Form-Group"]}>
-            <Form.Control
-              required
-              type="password"
-              placeholder="confirm password"
-              className={classes["Form-Control"]}
-              ref={confirmPasswordRef}
-            />
-          </Form.Group>
-          {showContent && <p className={classes.red}>{content}</p>}
+    <>
+      <Form className={classes["form-container"]} onSubmit={submitHandler}>
+        <h4 className={classes["form-header"]}>Sign Up page</h4>
+        <Form.Group className={classes["form-froup"]}>
+          <Form.Control
+            required
+            type="email"
+            placeholder="email"
+            ref={emailInputRef}
+          />
+        </Form.Group>
+        <Form.Group className={classes["form-froup"]}>
+          <Form.Control
+            required
+            type="password"
+            placeholder="password"
+            ref={passwordInputRef}
+          />
+        </Form.Group>
+        <Form.Group className={classes["form-froup"]}>
+          <Form.Control
+            required
+            type="password"
+            placeholder="confirm password"
+            ref={confirmPasswordRef}
+          />
+        </Form.Group>
+        {showContent && <p className={classes["error-message"]}>{content}</p>}
 
-          <Button type="submit">Sign Up</Button>
-          <p>
-            Already have an Account?<Link to="/login">Login</Link>
-          </p>
-        </Form>
-      </CardBound>
-    </div>
+        <Button type="submit" className={classes["submit-button"]}>
+          Sign Up
+        </Button>
+        <p className={classes["login-link"]}>
+          Already have an Account?<Link to="/login">Login</Link>
+        </p>
+      </Form>
+    </>
   );
 };
 
