@@ -6,6 +6,7 @@ import { Route, Redirect } from "react-router-dom";
 import LoginForm from "./pages/login/LoginForm";
 import WelcomePage from "./pages/WelcomePage";
 import UpdateProfile from "./pages/update-profile/UpdateProfile";
+import ForgotPasswordForm from "./pages/forgot-password/ForgotPasswordForm";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
       </Route>
       <Route path="/update-profile">
         <UpdateProfile></UpdateProfile>
+      </Route>
+      <Route path="/forgot-password">
+        <ForgotPasswordForm></ForgotPasswordForm>
       </Route>
     </Switch>
   );

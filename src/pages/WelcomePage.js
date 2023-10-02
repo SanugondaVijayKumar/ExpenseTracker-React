@@ -78,7 +78,7 @@ const WelcomePage = (props) => {
     try {
       const idToken = localStorage.getItem("token");
       const response = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=YOUR_API_KEY`,
+        `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCEQS_IScnEU4fKaC2xhl5QvjZ1St0cJX4`,
         {
           method: "POST",
           headers: {
@@ -90,12 +90,12 @@ const WelcomePage = (props) => {
           }),
         }
       );
-      if (response.ok) {
-        setIsEmailSent(true);
-      } else {
-        const errorData = await response.json();
-        setError(errorData.error.message);
+      if (!response.ok) {
+        // setIsEmailSent(true);
+        throw new Error("Something went wrong!");
       }
+      const data = await response.json();
+      alert("verified...");
     } catch (err) {
       console.error(err);
       setError("An error occurred while sending the verification email.");

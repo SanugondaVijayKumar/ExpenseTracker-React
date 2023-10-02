@@ -75,6 +75,9 @@ const LoginForm = (props) => {
         Login
       </Button>
       <p className={classes["sign-up-link"]}>
+        <Link to="/forgot-password">Forgot Passord?</Link>
+      </p>
+      <p className={classes["sign-up-link"]}>
         Don't have an Account?<Link to="/signup">Sign Up</Link>
       </p>
     </Form>
