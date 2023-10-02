@@ -7,6 +7,7 @@ import LoginForm from "./pages/login/LoginForm";
 import WelcomePage from "./pages/WelcomePage";
 import UpdateProfile from "./pages/update-profile/UpdateProfile";
 import ForgotPasswordForm from "./pages/forgot-password/ForgotPasswordForm";
+import Expenses from "./pages/expenses/Expenses";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
       </Route>
       <Route path="/forgot-password">
         <ForgotPasswordForm></ForgotPasswordForm>
+      </Route>
+      <Route path="/expenses">
+        <Expenses></Expenses>
       </Route>
     </Switch>
   );
