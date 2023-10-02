@@ -1,3 +1,5 @@
+/*
+
 .link{
     float:right;
 }
@@ -5,5 +7,41 @@
 .centerButton {
     display: flex;
     justify-content: center;
-    margin-top: 20px; /* Adjust the margin as needed */
+    margin-top: 20px;
+}
+
+.logout{
+    float:right;
+    color:red;
+}
+*/
+
+/* WelcomePage.module.css */
+
+.link {
+    float: right;
+    margin-right: 20px; /* Add some spacing to the right */
   }
+  
+  .centerButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .logout {
+    float: right;
+    color: red;
+    margin-right: 20px; /* Add some spacing to the right */
+  }
+  
+  .container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .message {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
