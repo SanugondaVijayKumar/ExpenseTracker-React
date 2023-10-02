@@ -1,3 +1,9 @@
 .link{
     float:right;
 }
+
+.centerButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Adjust the margin as needed */
+  }

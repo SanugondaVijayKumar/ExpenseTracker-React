@@ -153,7 +153,9 @@ const UpdateProfile = () => {
         </p>
       </div>
       <form onSubmit={submitHandler}>
-        <button className="cancel">Cancel</button>
+        <button type="button" className="cancel">
+          Cancel
+        </button>
         <h3>Contact details</h3>
         <label>Full Name:</label>
         <input
