@@ -26,10 +26,8 @@ const SignupForm = (props) => {
         returnSecureToken: true,
       };
       if (enteredPassword !== enteredConfirmPassword) {
-        console.log("entered if");
         setContent("Passwords do not match!"); // Update the content state
         setShowContent(true);
-        console.log("showContent=", showContent);
       } else {
         const response = await fetch(
           `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCEQS_IScnEU4fKaC2xhl5QvjZ1St0cJX4`,
@@ -41,12 +39,12 @@ const SignupForm = (props) => {
             },
           }
         );
-        console.log("response=", response);
+
         if (!response.ok && response.status === 400) {
           throw new Error("Email Already Exists");
         }
         const data = await response.json();
-        console.log(data);
+
         setShowContent(false);
         alert("successfully created the user!");
         history.replace("/login");

@@ -39,6 +39,7 @@ const WelcomePage = (props) => {
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     history.replace("/login");
   };
 

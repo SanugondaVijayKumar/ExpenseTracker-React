@@ -41,6 +41,7 @@ const LoginForm = (props) => {
 
       const token = data.idToken;
       localStorage.setItem("token", token);
+      localStorage.setItem("email", enteredEmail);
       emailInputRef.current.value = "";
       passwordInputRef.current.value = "";
       alert("successfully loggedIn");
