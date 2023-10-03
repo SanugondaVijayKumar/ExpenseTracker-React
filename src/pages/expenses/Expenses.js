@@ -2,23 +2,24 @@ import React, { useState } from "react";
 import AddExpenseForm from "../../components/expenses/AddExpenseForm";
 import ShowExpenses from "../../components/expenses/ShowExpenses";
 
-const DUMMY_EXPENSES = [
-  { id: "1", amount: "200", description: "chapathi", category: "food" },
-  { id: "2", amount: "7000", description: "room rent", category: "rent" },
-];
-
 const Expenses = () => {
   const [expenses, setExpenses] = useState([]);
+  const [name, setName] = useState(null);
 
   const addExpense = (newExpense) => {
     setExpenses((prevExpenses) => {
       return [...prevExpenses, newExpense];
     });
   };
+
+  const editHandler = (nameValue) => {
+    setName(nameValue);
+  };
+
   return (
     <>
-      <AddExpenseForm onAddExpense={addExpense}></AddExpenseForm>
-      <ShowExpenses expenses={expenses}></ShowExpenses>
+      <AddExpenseForm onAddExpense={addExpense} name={name}></AddExpenseForm>
+      <ShowExpenses expenses={expenses} onEdit={editHandler}></ShowExpenses>
     </>
   );
 };

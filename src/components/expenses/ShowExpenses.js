@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ExpenseItem from "./ExpenseItem";
 import axios from "axios";
+import ItemContext from "../store/item-context";
 
 const ShowExpenses = (props) => {
+  const itemCtx = useContext(ItemContext);
   const [expenses, setExpenses] = useState([]);
 
   useEffect(() => {
@@ -18,22 +20,20 @@ const ShowExpenses = (props) => {
         //   throw new Error(response.statusText);
         // }
         let data = response.data;
-        data = Object.values(data);
-        console.log("data=", data);
+        if (!data) {
+          data = [];
+        } else {
+          data = Object.values(data);
+        }
+
         setExpenses(data);
-        // if (!response.data) {
-        //   response.data = [];
-        // }
-        // const data = response.data;
-        // console.log("getting expenses data=", data);
-        // setExpenses(Object.values[data]);
       } catch (err) {
         console.log(err);
       }
     }
 
     fetchExpenses();
-  }, []);
+  }, [itemCtx]);
 
   const filteredExpenses = expenses.map((expense) => {
     return (
@@ -43,6 +43,7 @@ const ShowExpenses = (props) => {
         amount={expense.obj.amount}
         description={expense.obj.description}
         category={expense.obj.category}
+        onEdit={props.onEdit}
       ></ExpenseItem>
     );
   });

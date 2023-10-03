@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import ItemContext from "../store/item-context";
 
 const AddExpenseForm = (props) => {
-  const [amount, setAmount] = useState(0);
+  const itemCtx = useContext(ItemContext);
+  const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState(""); // Add category state
 
@@ -31,10 +33,43 @@ const AddExpenseForm = (props) => {
         }
       );
       const data = response.data;
+      itemCtx.changeItem();
+      setAmount("");
+      setDescription("");
+      setCategory("");
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    async function editExpense() {
+      try {
+        const emailId = localStorage.getItem("email");
+        const userid = emailId.replace(/[^a-zA-Z0-9\s]/g, "");
+        const response = await axios.get(
+          `https://expense-tracker-app-977c0-default-rtdb.firebaseio.com/expenses/${userid}.json`
+        );
+        const data = response.data;
+
+        for (let name in data) {
+          if (name === props.name) {
+            setAmount(data[name].obj.amount);
+            setDescription(data[name].obj.description);
+            setCategory(data[name].obj.category);
+            const res = await axios.delete(
+              `https://expense-tracker-app-977c0-default-rtdb.firebaseio.com/expenses/${userid}/${name}.json`
+            );
+            itemCtx.changeItem();
+            break;
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    editExpense();
+  }, [props.name]);
 
   return (
     <Form onSubmit={submitHandler}>
@@ -44,6 +79,7 @@ const AddExpenseForm = (props) => {
           required
           type="number"
           placeholder="amount"
+          value={amount}
           onChange={(e) => {
             setAmount(e.target.value);
           }}
@@ -54,6 +90,7 @@ const AddExpenseForm = (props) => {
           required
           type="text"
           placeholder="description"
+          value={description}
           onChange={(e) => {
             setDescription(e.target.value);
           }}
